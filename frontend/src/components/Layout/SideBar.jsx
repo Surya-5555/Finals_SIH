@@ -3,12 +3,10 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const sidebarMenu = [
-    { name: "Dashboard", icon: "📊", path: "/dashboard" },
-    { name: "Methodologies", icon: "📚", path: "/methodologies" },
-    { name: "MRV Engine", icon: "⚙️", path: "/mrv" },
-    { name: "My Projects", icon: "🌿", path: "/projects" },
-    { name: "Notifications", icon: "🔔", path: "/notifications" },
-    { name: "Settings", icon: "⚙️", path: "/settings" }
+    { name: "Dashboard", path: "/dashboard" },
+    { name: "Methodologies", path: "/methodologies" },
+    { name: "MRV Engine", path: "/mrv" },
+    { name: "My Projects" , path: "/projects" },
   ];
 
   return (
@@ -32,8 +30,12 @@ const Sidebar = ({ isOpen, onClose }) => {
         <div className="p-6 border-b border-blue-800/30">
           <div className="flex items-center space-x-4">
             <div>
-              <h2 className="text-lg font-bold text-white">Surya P R</h2>
-              <p className="text-sm text-blue-300">NGO</p>
+              <h2 className="text-lg font-bold text-white">{(() => {
+                try { return (JSON.parse(localStorage.getItem('bb_profile'))?.name) || 'User'; } catch { return 'User'; }
+              })()}</h2>
+              <p className="text-sm text-blue-300">{(() => {
+                try { return (JSON.parse(localStorage.getItem('bb_profile'))?.role?.toUpperCase()) || 'NGO'; } catch { return 'NGO'; }
+              })()}</p>
             </div>
           </div>
         </div>

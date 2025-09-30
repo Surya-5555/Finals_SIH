@@ -68,11 +68,24 @@ export default function Login() {
         }
 
         setShowFeedback(true);
+        // Persist basic profile
+        const profile = {
+          name: `${formData.firstName || 'User'} ${formData.lastName || ''}`.trim(),
+          email: formData.email,
+          role: selectedRole
+        };
+        try {
+          localStorage.setItem('bb_profile', JSON.stringify(profile));
+        } catch {}
         
-        // After showing success briefly, redirect to dashboard
+        // After showing success briefly, redirect based on role
         setTimeout(() => {
           setShowFeedback(false);
-          window.location.href = '/dashboard';
+          if (selectedRole === 'admin') {
+            window.location.href = '/admin-login';
+          } else {
+            window.location.href = '/dashboard';
+          }
         }, 1200);
 
       } catch (error) {

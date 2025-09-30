@@ -80,6 +80,5 @@ export const statsData = [
     { name: "Methodologies", icon: "📚", path: "/methodologies" },
     { name: "MRV Engine", icon: "⚙️", path: "/mrv" },
     { name: "My Projects", icon: "🌿", path: "/projects" },
-    { name: "Notifications", icon: "🔔", path: "/notifications" },
-    { name: "Settings", icon: "⚙️", path: "/settings" }
+    // Removed Notifications and Settings from sidebar per request
   ];
