@@ -53,9 +53,31 @@ export default function Login() {
     });
   };
 
+  const isValidEmail = (email) => /[^\s@]+@[^\s@]+\.[^\s@]+/.test(email);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    // Frontend validation
+    const errors = [];
+    if (!formData.email) errors.push('Email is required.');
+    if (formData.email && !isValidEmail(formData.email)) errors.push('Enter a valid email address.');
+    if (!formData.password) errors.push('Password is required.');
+    if (formData.password && formData.password.length < 8) errors.push('Password must be at least 8 characters.');
+    if (isSignUp) {
+      if (!formData.firstName) errors.push('First name is required.');
+      if (!formData.lastName) errors.push('Last name is required.');
+      if (formData.confirmPassword !== formData.password) errors.push('Passwords do not match.');
+    }
+
+    if (errors.length > 0) {
+      setFeedbackType('error');
+      setFeedbackMessage(errors[0]);
+      setShowFeedback(true);
+      setIsLoading(false);
+      return;
+    }
 
     setTimeout(async () => {
       try {
@@ -296,7 +318,8 @@ export default function Login() {
                               ? '0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3)'
                               : '0 0 10px rgba(30, 64, 175, 0.2)'
                           }}
-                          required={isSignUp}
+                  required={isSignUp}
+                  minLength={2}
                         />
                       </div>
                       <div className="relative group">
@@ -314,7 +337,8 @@ export default function Login() {
                               ? '0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3)'
                               : '0 0 10px rgba(30, 64, 175, 0.2)'
                           }}
-                          required={isSignUp}
+                  required={isSignUp}
+                  minLength={2}
                         />
                       </div>
                     </div>
@@ -393,7 +417,7 @@ export default function Login() {
                         ? '0 0 0 3px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3)'
                         : '0 0 10px rgba(30, 64, 175, 0.2)'
                     }}
-                    required
+                  required
                   />
                 </div>
 
@@ -414,6 +438,7 @@ export default function Login() {
                         : '0 0 10px rgba(30, 64, 175, 0.2)'
                     }}
                     required
+                  minLength={8}
                   />
                   <button
                     type="button"
@@ -442,6 +467,7 @@ export default function Login() {
                           : '0 0 10px rgba(30, 64, 175, 0.2)'
                       }}
                       required={isSignUp}
+                      minLength={8}
                     />
                     <button
                       type="button"
