@@ -1,8 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { sidebarMenu } from '../../data/dashboardData';
 
 const Sidebar = ({ isOpen, onClose }) => {
+  const sidebarMenu = [
+    { name: "Dashboard", icon: "📊", path: "/dashboard" },
+    { name: "Methodologies", icon: "📚", path: "/methodologies" },
+    { name: "MRV Engine", icon: "⚙️", path: "/mrv" },
+    { name: "My Projects", icon: "🌿", path: "/projects" },
+    { name: "Notifications", icon: "🔔", path: "/notifications" },
+    { name: "Settings", icon: "⚙️", path: "/settings" }
+  ];
+
   return (
     <>
       {/* Overlay for mobile */}
@@ -23,9 +31,6 @@ const Sidebar = ({ isOpen, onClose }) => {
         {/* User Profile Section */}
         <div className="p-6 border-b border-blue-800/30">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-xl shadow-lg flex items-center justify-center">
-              <div className="w-6 h-6 bg-white rounded-lg opacity-90"></div>
-            </div>
             <div>
               <h2 className="text-lg font-bold text-white">Surya P R</h2>
               <p className="text-sm text-blue-300">NGO</p>

@@ -42,9 +42,6 @@ const Navbar = ({ onToggleSidebar, isSidebarOpen }) => {
             </button>
             
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg shadow-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-white rounded opacity-90"></div>
-              </div>
               <span className="text-lg font-bold text-white hidden sm:block">BlueBlock MRV</span>
             </div>
           </div>
