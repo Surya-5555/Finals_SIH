@@ -69,9 +69,11 @@ export default function Login() {
 
         setShowFeedback(true);
         
+        // After showing success briefly, redirect to dashboard
         setTimeout(() => {
           setShowFeedback(false);
-        }, 3000);
+          window.location.href = '/dashboard';
+        }, 1200);
 
       } catch (error) {
         setFeedbackType('error');
